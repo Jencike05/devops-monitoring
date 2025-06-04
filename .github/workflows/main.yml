@@ -43,3 +43,23 @@ jobs:
 
       - name: Docker image push
         run: docker push ${{ secrets.DOCKER_USERNAME }}/devops-monitoring:latest
+
+  deploy-to-azure:
+    needs: docker-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure bejelentkezés
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Azure Container Instance deploy
+        run: |
+          az container create \
+            --resource-group myResourceGroup \
+            --name devops-monitoring-container \
+            --image ${{ secrets.DOCKER_USERNAME }}/devops-monitoring:latest \
+            --dns-name-label devops-monitoring-${{ github.run_number }} \
+            --ports 80 \
+            --location westeurope \
+            --restart-policy OnFailure
