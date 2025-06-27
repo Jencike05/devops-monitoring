@@ -25,7 +25,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Tesztek futtatása
-        run: pytest
+        run:  |
+          export PYTHONPATH=.
+          pytest
 
   docker-build:
     needs: test
