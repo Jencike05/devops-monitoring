@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/Jencike05/devops-monitoring/actions/workflows/main.yml/badge.svg)
 
-Ez egy egyszerű Flask alapú monitoring app, amely megjeleníti a CPU és memóriahasználatot egy webes felületen.
+Ez egy egyszerű Flask alapú monitoring app, amely megjeleníti a CPU és memóriahasználatot egy webes felületen..
 
 A projekt célja egy teljes CI/CD pipeline gyakorlása volt:
 
